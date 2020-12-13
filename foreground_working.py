@@ -261,7 +261,9 @@ if __name__ == "__main__":
 		if int(option) == 1:
 			check_app_time()
 		elif int(option) == 2:
-			check_internet_speed()
+			while True:
+				check_internet_speed()
+				sleep(900)
 		elif int(option) == 3:
 			check_idle_time()
 		elif int(option) ==4 :

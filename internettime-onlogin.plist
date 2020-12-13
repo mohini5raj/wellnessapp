@@ -7,7 +7,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>python3</string>
-        <string>/Users/gayatris/techjam20/wellness-app/foreground_working.py</string>
+        <string>/Users/mraj/wellnessapp/foreground_working.py</string>
         <string>2</string>
     </array>
     <key>RunAtLoad</key>

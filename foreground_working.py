@@ -224,7 +224,7 @@ def check_internet_speed():
 		if file_stat==0:
 			writer.writerow(["Time", "Upload Speed", "Download Speed"])
 		writer.writerow([datetime.datetime.now(),str(upload_speed)+"MB",str(download_speed)+"MB"])
-		time.sleep(3600)
+		#time.sleep(3600)
 
 
 def check_idle_time():
@@ -263,7 +263,7 @@ if __name__ == "__main__":
 		elif int(option) == 2:
 			while True:
 				check_internet_speed()
-				sleep(900)
+				time.sleep(900)
 		elif int(option) == 3:
 			check_idle_time()
 		elif int(option) ==4 :

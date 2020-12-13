@@ -11,6 +11,15 @@ time_taken = []
 app_list = []
 main_dict = {}
 
+def make_autopct(values):
+    def my_autopct(pct):
+    	total = 0
+    	for i in range(len(values)):
+    		total = total + int(values[i])
+    	val = int(round((pct)*total/100.0))
+    	return '{p:.2f}%  ({v:.2f})'.format(p=pct,v=float(val/60))
+    return my_autopct
+
 def app_usage_plot():
 	#Plot for app usage
 	for dat in open(home_dir + "foregroundtime.csv").readlines():
@@ -27,13 +36,17 @@ def app_usage_plot():
 	for dat in main_dict :
 		today_dat = str(datetime.today().strftime('%Y-%m-%d'))
 		if str(dat) == today_dat:
+			total = 0
+			for a in main_dict[dat]:
+				total = total + int(main_dict[dat][a])
 			for apps in main_dict[dat]:
-				app_list.append(apps)
-				time_taken.append(main_dict[dat][apps])
+				if ((int(main_dict[dat][apps])/total)*100) > 5.00 :
+					app_list.append(apps)
+					time_taken.append(main_dict[dat][apps])
 
 			# Creating plot 
-			fig = plt.figure(figsize =(10, 5)) 
-			plt.pie(time_taken, autopct='%1.0f%%') 
+			fig = plt.figure(figsize =(10, 5))
+			plt.pie(time_taken, autopct=make_autopct(time_taken))  
 			plt.legend(app_list,loc='best', bbox_to_anchor=(-0.1, 1.))  
 			plt.savefig(home_dir + 'app_usage_plot.png')
 			#plt.show()
